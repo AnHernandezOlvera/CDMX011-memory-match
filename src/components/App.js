@@ -1,26 +1,24 @@
-//
-// Para incluir los diferentes sets de cartas podemos _importar_ el archivo
-// JavasSript que contenga el `export` correspondiente...
-//
-// import pokemon from '../data/pokemon/pokemon.js';
-// console.log(pokemon);
-//
-// O alternativamente podríamos cargar el JSON de forma asíncrona usando
-// `fetch` en el momento que consideremos necesario.
-//
-// fetch('./data/pokemon/pokemon.json')
-//   .then(resp => resp.json())
-//   .then(console.log)
-//   .catch(console.error);
-//
+import travel from '../data/travel/travel.js';
+import {button} from '../components/button.js';
+import {shuffle} from '../components/shuffle.js';
+import {CardContainer} from '../components/contenedor.js';
 
-const App = () => {
+const cards = travel.items.concat(travel.items)
+
+
+export const App = () => {
   const el = document.createElement('div');
-
   el.className = 'App';
-  el.textContent = 'Hola mundo!';
+  el.textContent = 'Travel Memory';
+  const score = document.createElement("h6")
+  score.className = 'score'
+  el.appendChild(score)
+  const mix = shuffle(cards)
+  el.appendChild(button())
+  el.appendChild(CardContainer(mix))
+ 
+  return el; 
+ };
+ 
 
-  return el;
-};
 
-export default App;
